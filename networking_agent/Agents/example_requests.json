@@ -1,0 +1,165 @@
+{
+  "example_requests": {
+    "user_registration": {
+      "action": "register_user",
+      "name": "John Doe",
+      "linkedin_url": "https://www.linkedin.com/in/johndoe",
+      "about": "Senior software engineer with 5+ years experience in Python, cloud technologies, and machine learning. Passionate about mentoring junior developers and contributing to open-source projects.",
+      "give": "Technical mentorship, code review expertise, cloud architecture guidance, and open-source project collaboration",
+      "take": "AI/ML project opportunities, startup connections, speaking opportunities at tech conferences, and collaboration on innovative projects"
+    },
+    
+    "get_matches": {
+      "action": "get_matches",
+      "user": {
+        "name": "John Doe",
+        "linkedin_url": "https://www.linkedin.com/in/johndoe",
+        "about": "Senior software engineer with 5+ years experience in Python, cloud technologies, and machine learning. Passionate about mentoring junior developers and contributing to open-source projects.",
+        "give": "Technical mentorship, code review expertise, cloud architecture guidance, and open-source project collaboration",
+        "take": "AI/ML project opportunities, startup connections, speaking opportunities at tech conferences, and collaboration on innovative projects"
+      },
+      "attendees": [
+        {
+          "name": "Jane Smith",
+          "linkedin_url": "https://www.linkedin.com/in/janesmith",
+          "about": "AI Product Manager at TechCorp with expertise in machine learning product development. Love building products that scale and mentoring aspiring PMs.",
+          "give": "Product strategy, AI project scoping, mentorship for aspiring PMs, and connections in the AI/ML space",
+          "take": "Technical cofounders, cloud scaling expertise, and collaboration on AI projects"
+        },
+        {
+          "name": "Mike Johnson",
+          "linkedin_url": "https://www.linkedin.com/in/mikejohnson",
+          "about": "DevOps engineer and cloud architect with 6+ years experience. Conference speaker and community leader in the DevOps space.",
+          "give": "DevOps automation, cloud infrastructure guidance, SRE best practices, and conference speaking opportunities",
+          "take": "AI integration expertise, mentorship opportunities, and collaboration on cloud-native projects"
+        }
+      ]
+    },
+    
+    "process_event": {
+      "action": "process_event",
+      "attendees": [
+        {
+          "name": "John Doe",
+          "linkedin_url": "https://www.linkedin.com/in/johndoe",
+          "about": "Senior software engineer with 5+ years experience in Python, cloud technologies, and machine learning. Passionate about mentoring junior developers and contributing to open-source projects.",
+          "give": "Technical mentorship, code review expertise, cloud architecture guidance, and open-source project collaboration",
+          "take": "AI/ML project opportunities, startup connections, speaking opportunities at tech conferences, and collaboration on innovative projects"
+        },
+        {
+          "name": "Jane Smith",
+          "linkedin_url": "https://www.linkedin.com/in/janesmith",
+          "about": "AI Product Manager at TechCorp with expertise in machine learning product development. Love building products that scale and mentoring aspiring PMs.",
+          "give": "Product strategy, AI project scoping, mentorship for aspiring PMs, and connections in the AI/ML space",
+          "take": "Technical cofounders, cloud scaling expertise, and collaboration on AI projects"
+        },
+        {
+          "name": "Mike Johnson",
+          "linkedin_url": "https://www.linkedin.com/in/mikejohnson",
+          "about": "DevOps engineer and cloud architect with 6+ years experience. Conference speaker and community leader in the DevOps space.",
+          "give": "DevOps automation, cloud infrastructure guidance, SRE best practices, and conference speaking opportunities",
+          "take": "AI integration expertise, mentorship opportunities, and collaboration on cloud-native projects"
+        }
+      ]
+    },
+    
+    "get_dashboard": {
+      "action": "get_dashboard",
+      "user": {
+        "name": "John Doe",
+        "linkedin_url": "https://www.linkedin.com/in/johndoe",
+        "about": "Senior software engineer with 5+ years experience in Python, cloud technologies, and machine learning. Passionate about mentoring junior developers and contributing to open-source projects.",
+        "give": "Technical mentorship, code review expertise, cloud architecture guidance, and open-source project collaboration",
+        "take": "AI/ML project opportunities, startup connections, speaking opportunities at tech conferences, and collaboration on innovative projects"
+      }
+    }
+  },
+  
+  "expected_responses": {
+    "user_registration_success": {
+      "status": "success",
+      "message": "Successfully processed user: John Doe",
+      "data": {
+        "user_id": "John Doe",
+        "linkedin_url": "https://www.linkedin.com/in/johndoe",
+        "profile_analysis": {
+          "professional_summary": "Senior software engineer with expertise in Python, cloud technologies, and machine learning...",
+          "networking_summary": "Experienced mentor and open-source contributor seeking AI/ML opportunities...",
+          "skills_tags": ["Python", "Cloud Technologies", "Machine Learning", "Mentoring", "Open Source"],
+          "industry_tags": ["Technology", "Software Development", "AI/ML"],
+          "networking_tags": ["Mentor", "Collaborator", "Contributor"],
+          "career_stage": "Mid-Career",
+          "networking_persona": "Mentor"
+        },
+        "give_take_evaluation": {
+          "give_quality_score": 0.85,
+          "take_quality_score": 0.78,
+          "overall_quality_score": 0.82,
+          "evaluation_reasoning": "Strong give/take statements with specific offerings and clear goals...",
+          "match_potential": "High potential for meaningful networking connections"
+        },
+        "linkedin_summary": {
+          "summary": "Experienced software engineer with strong technical background...",
+          "tags": ["Software Engineering", "Python", "Cloud", "Mentoring"]
+        },
+        "networking_recommendations": {
+          "profile_analysis": {},
+          "networking_recommendations": "Target AI/ML professionals, startup founders, and conference organizers..."
+        },
+        "processing_timestamp": "2024-01-15T10:30:00.000Z"
+      }
+    },
+    
+    "get_matches_success": {
+      "status": "success",
+      "message": "Found 2 matches for John Doe",
+      "data": {
+        "user": {
+          "name": "John Doe",
+          "linkedin_url": "https://www.linkedin.com/in/johndoe"
+        },
+        "total_matches": 2,
+        "matches": [
+          {
+            "name": "Jane Smith",
+            "linkedin_url": "https://www.linkedin.com/in/janesmith",
+            "title": "AI Product Manager at TechCorp",
+            "summary": "AI Product Manager with expertise in machine learning product development...",
+            "tags": ["AI/ML", "Product Management", "Mentoring", "Startups"],
+            "match_percentage": 87,
+            "match_score": 0.87,
+            "skills_tags": ["Product Strategy", "AI/ML", "Mentoring"],
+            "industry_tags": ["Technology", "AI"],
+            "networking_tags": ["Collaborator", "Mentor"],
+            "career_stage": "Mid-Career",
+            "networking_persona": "Mentor",
+            "reasoning": "Strong match due to complementary skills - John offers technical expertise while Jane seeks technical cofounders..."
+          },
+          {
+            "name": "Mike Johnson",
+            "linkedin_url": "https://www.linkedin.com/in/mikejohnson",
+            "title": "DevOps Engineer and Cloud Architect",
+            "summary": "DevOps engineer and cloud architect with 6+ years experience...",
+            "tags": ["DevOps", "Cloud Architecture", "SRE", "Speaking"],
+            "match_percentage": 76,
+            "match_score": 0.76,
+            "skills_tags": ["DevOps", "Cloud Infrastructure", "SRE"],
+            "industry_tags": ["Technology", "Cloud"],
+            "networking_tags": ["Speaker", "Collaborator"],
+            "career_stage": "Mid-Career",
+            "networking_persona": "Connector",
+            "reasoning": "Good match for cloud infrastructure collaboration and speaking opportunities..."
+          }
+        ],
+        "processing_timestamp": "2024-01-15T10:30:00.000Z"
+      }
+    },
+    
+    "error_response": {
+      "status": "error",
+      "message": "Missing required field: name",
+      "data": null,
+      "processing_timestamp": "2024-01-15T10:30:00.000Z"
+    }
+  }
+} 
