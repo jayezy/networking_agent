@@ -64,7 +64,7 @@ class LinkedInConnector:
         return response.json()
 
 # Example usage (uncomment and set your API key to use):
-api_key = ""
+api_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM1NzIwNWE5LWViZTItNDM1OC04ODUyLTdmZjNmYzg0ZWMzZSIsInR5cGUiOiJpZV9tb2RlbCJ9.7l-bOTyW6kcD6mmj4zcdbtW-DBpH00BPcP3gZui4umI"
 linkedin_connector = LinkedInConnector(gmi_api_key=api_key)
 linkedin_connector.login("", "")
 linkedin_connector.scrape_profile("https://www.linkedin.com/in/jayezy/")
