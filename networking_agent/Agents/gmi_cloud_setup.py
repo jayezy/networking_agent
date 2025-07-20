@@ -2,7 +2,7 @@ import requests
 import json
 
 class GMICloudClient:
-    def __init__(self, api_key, model="meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8"):
+    def __init__(self, api_key, model="deepseek-ai/DeepSeek-R1-0528"):
         self.url = "https://api.gmi-serving.com/v1/chat/completions"
         self.headers = {
             "Content-Type": "application/json",
@@ -14,7 +14,7 @@ class GMICloudClient:
     def create_message(role, content):
         return {"role": role, "content": content}
 
-    def build_payload(self, system_prompt, user_prompt, temperature=1, max_tokens=500):
+    def build_payload(self, system_prompt, user_prompt, temperature=1, max_tokens=20000):
         messages = [
             self.create_message("system", system_prompt),
             self.create_message("user", user_prompt)
@@ -26,7 +26,7 @@ class GMICloudClient:
             "max_tokens": max_tokens
         }
 
-    def send_chat_completion(self, system_prompt, user_prompt, temperature=1, max_tokens=500):
+    def send_chat_completion(self, system_prompt, user_prompt, temperature=1, max_tokens=20000):
         payload = self.build_payload(system_prompt, user_prompt, temperature, max_tokens)
         response = requests.post(self.url, headers=self.headers, json=payload)
         return payload, response
@@ -36,7 +36,12 @@ class GMICloudClient:
         print("Request payload:")
         print(json.dumps(payload, indent=2))
         print("\nResponse:")
-        print(json.dumps(response.json(), indent=2))
+        try:
+            print(json.dumps(response.json(), indent=2))
+        except Exception as e:
+            print(f"Could not decode response as JSON: {e}")
+            print("Raw response text:")
+            print(response.text)
 
 # Example usage:
 if __name__ == "__main__":
