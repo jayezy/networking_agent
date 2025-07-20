@@ -14,7 +14,7 @@ class GMICloudClient:
     def create_message(role, content):
         return {"role": role, "content": content}
 
-    def build_payload(self, system_prompt, user_prompt, temperature=1, max_tokens=20000):
+    def build_payload(self, system_prompt, user_prompt, temperature=1, max_tokens=10000):
         messages = [
             self.create_message("system", system_prompt),
             self.create_message("user", user_prompt)
@@ -26,7 +26,7 @@ class GMICloudClient:
             "max_tokens": max_tokens
         }
 
-    def send_chat_completion(self, system_prompt, user_prompt, temperature=1, max_tokens=20000):
+    def send_chat_completion(self, system_prompt, user_prompt, temperature=1, max_tokens=10000):
         payload = self.build_payload(system_prompt, user_prompt, temperature, max_tokens)
         response = requests.post(self.url, headers=self.headers, json=payload)
         return payload, response

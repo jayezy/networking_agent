@@ -8,6 +8,7 @@ import os
 from gmi_cloud_setup import GMICloudClient
 from exa_py import Exa
 import re, json as pyjson
+import json
 
 class LinkedInConnector:
     """A class to handle LinkedIn automation and API interactions."""
@@ -100,8 +101,6 @@ class LinkedInConnector:
             print("GMICloudClient is not initialized. Please provide an API key.")
             return None
         contents = self.exa_extract_contents(profile_url)
-        print("Contents: ", contents)
-
         # Define prompts
         system_prompt = "You are an expert at extracting structured data from JSON."
         user_prompt = self.generate_user_prompt(contents)
@@ -110,8 +109,9 @@ class LinkedInConnector:
         llm_response = response.json()
         print("llm_response: ", llm_response)
         content = llm_response.get('choices', [{}])[0].get('message', {}).get('content', '')
-        extracted_json = self.extract_json_from_llm_output(content)
-        return extracted_json
+        extracted_json = self.extract_json_from_gpt(content)
+        return self.dict_to_json_string(extracted_json)
+        # return extracted_json
 
     @staticmethod
     def extract_json_from_llm_output(content):
@@ -119,7 +119,6 @@ class LinkedInConnector:
         Extract the first JSON object from LLM output, handling code blocks and plain JSON.
         Returns the parsed JSON object or None if not found/parsable.
         """
-        import re, json as pyjson
         # Try to extract any JSON object in a code block
         match = re.search(r'```json[\s\S]*?(\{[\s\S]*?\})[\s\S]*?```', content)
         if not match:
@@ -134,9 +133,53 @@ class LinkedInConnector:
         print("No JSON object found in LLM response.")
         return None
 
+    @staticmethod
+    def dict_to_json_string(data_dict):
+        """
+        Convert a Python dictionary to a pretty-printed JSON string.
+        Returns the JSON string, or None if conversion fails.
+        """
+        try:
+            return json.dumps(data_dict, indent=2)
+        except Exception as e:
+            print(f"Error converting dict to JSON string: {e}")
+            return None
+
+    # Example usage:
+    # extracted_dict = LinkedInConnector.extract_json_from_llm_output(content)
+    # json_str = LinkedInConnector.dict_to_json_string(extracted_dict)
+
+    def extract_json_from_gpt(self, raw_response: str) -> dict:
+        # Try to extract the content inside ```json ... ``` block
+        match = re.search(r"```json\s*(\{.*?\})\s*```", raw_response, re.DOTALL)
+        
+        # Fallback to extracting any JSON-like object if ```json is not used
+        if not match:
+            match = re.search(r"(\{.*\})", raw_response, re.DOTALL)
+
+        if match:
+            json_str = match.group(1)
+            try:
+                return json.loads(json_str)
+            except json.JSONDecodeError as e:
+                raise ValueError(f"Found JSON block but failed to parse it: {e}")
+        else:
+            raise ValueError("No valid JSON block found in the input string.")
+
+    @staticmethod
+    def pretty_print_request_response(response):
+        print("\nResponse:")
+        try:
+            parsed = json.loads(response)
+            pretty_json = json.dumps(parsed, indent=2)
+            print(pretty_json)
+        except Exception as e:
+            print(f"Could not decode response as JSON: {e}")
+
+
 # Example usage (uncomment and set your API key to use):
 api_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM1NzIwNWE5LWViZTItNDM1OC04ODUyLTdmZjNmYzg0ZWMzZSIsInR5cGUiOiJpZV9tb2RlbCJ9.7l-bOTyW6kcD6mmj4zcdbtW-DBpH00BPcP3gZui4umI"
 linkedin_connector = LinkedInConnector(gmi_api_key=api_key)
 extracted_user_profile_json = linkedin_connector.scrape_profile("https://www.linkedin.com/in/agrawalrinkal/")
+linkedin_connector.pretty_print_request_response(extracted_user_profile_json)
 
-print("extracted_user_profile_json: ", extracted_user_profile_json)
