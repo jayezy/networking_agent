@@ -140,7 +140,8 @@ class LinkedInConnector:
         Returns the JSON string, or None if conversion fails.
         """
         try:
-            return json.dumps(data_dict, indent=2)
+            json_dump = json.dumps(data_dict, indent=2)
+            return json.loads(json_dump)
         except Exception as e:
             print(f"Error converting dict to JSON string: {e}")
             return None
@@ -165,6 +166,14 @@ class LinkedInConnector:
                 raise ValueError(f"Found JSON block but failed to parse it: {e}")
         else:
             raise ValueError("No valid JSON block found in the input string.")
+    
+    @staticmethod
+    def parsed_json_request_response(response):
+        print("\nResponse:")
+        try:
+            return json.loads(response)
+        except Exception as e:
+            print(f"Could not decode response as JSON: {e}")
 
     @staticmethod
     def pretty_print_request_response(response):
@@ -181,5 +190,6 @@ class LinkedInConnector:
 api_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM1NzIwNWE5LWViZTItNDM1OC04ODUyLTdmZjNmYzg0ZWMzZSIsInR5cGUiOiJpZV9tb2RlbCJ9.7l-bOTyW6kcD6mmj4zcdbtW-DBpH00BPcP3gZui4umI"
 linkedin_connector = LinkedInConnector(gmi_api_key=api_key)
 extracted_user_profile_json = linkedin_connector.scrape_profile("https://www.linkedin.com/in/agrawalrinkal/")
-linkedin_connector.pretty_print_request_response(extracted_user_profile_json)
+# linkedin_connector.pretty_print_request_response(extracted_user_profile_json)
+print("extracted_user_profile_json: ", extracted_user_profile_json)
 
