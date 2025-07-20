@@ -40,7 +40,7 @@ class GMICloudClient:
 
 # Example usage:
 if __name__ == "__main__":
-    api_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM1NzIwNWE5LWViZTItNDM1OC04ODUyLTdmZjNmYzg0ZWMzZSIsInR5cGUiOiJpZV9tb2RlbCJ9.7l-bOTyW6kcD6mmj4zcdbtW-DBpH00BPcP3gZui4umI"
+    api_key = ""
     client = GMICloudClient(api_key)
     system_prompt = "You are a helpful AI assistant that helps connect people based on their interests. "
     user_prompt = "User is interested in travel. suggest 3 citites that are must visit before age 30"
