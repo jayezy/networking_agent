@@ -6,6 +6,7 @@ from linkedin_processor_agent import LinkedInProcessorAgent
 from give_take_evaluator_agent import GiveTakeEvaluatorAgent
 from profile_analyzer_agent import ProfileAnalyzerAgent
 from matchmaking_agent import MatchmakingAgent
+from linkedin_connector import LinkedInConnector
 
 class NetworkingOrchestrator:
     """
@@ -283,3 +284,10 @@ class NetworkingOrchestratorSync:
         Synchronous version of getting user dashboard data
         """
         return self.orchestrator.get_user_dashboard_data(user_data) 
+
+    def scrape_linkedin_profile(self, linkedin_url: str, gmi_api_key: str = None) -> str:
+        """
+        Scrape a LinkedIn profile using LinkedinConnector and return the response.
+        """
+        connector = LinkedInConnector(gmi_api_key=gmi_api_key)
+        return connector.scrape_profile(linkedin_url) 
