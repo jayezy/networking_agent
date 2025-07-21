@@ -1,5 +1,7 @@
 import asyncio
 import concurrent.futures
+import json
+import os
 from typing import Dict, Any, List, Optional
 from user_input_agent import UserInputAgent
 from linkedin_processor_agent import LinkedInProcessorAgent
@@ -289,5 +291,34 @@ class NetworkingOrchestratorSync:
         """
         Scrape a LinkedIn profile using LinkedinConnector and return the response.
         """
-        connector = LinkedInConnector(gmi_api_key=gmi_api_key)
+        connector = LinkedInConnector()
         return connector.scrape_profile(linkedin_url) 
+
+    def merge_registration_with_sample_data(self, registration_result: dict, sample_data_path: str = None) -> dict:
+        """
+        Merge registration_result fields into the matching user object in sample_data.json by user_id.
+        """
+        # Default path if not provided
+        if not sample_data_path:
+            sample_data_path = os.path.join(os.path.dirname(__file__), '../Database/sample_data3.json')
+        else:
+             sample_data_path = os.path.join(os.path.dirname(__file__), '../Database/' + sample_data_path + '.json')
+        # Read sample data
+        with open(sample_data_path, 'r') as f:
+            data = json.load(f)
+        user_id = registration_result.get('data', {}).get('user_id')
+        if not user_id:
+            raise ValueError('user_id not found in registration_result.data')
+        # Find and update the matching user
+        updated = False
+        for user in data:
+            if user.get('user_id') == user_id:
+                user.update(registration_result.get('data', {}))
+                updated = True
+                break
+        if not updated:
+            raise ValueError(f'user_id {user_id} not found in ', sample_data_path)
+        # Write back to file
+        with open(sample_data_path, 'w') as f:
+            json.dump(data, f, indent=2)
+        return user 

@@ -13,13 +13,14 @@ import json
 class LinkedInConnector:
     """A class to handle LinkedIn automation and API interactions."""
 
-    def __init__(self, gmi_api_key=None):
+    def __init__(self):
         self.gmi_client = None
-        if gmi_api_key:
-            self.gmi_client = GMICloudClient(gmi_api_key)
+        self.gmi_client = GMICloudClient()
 
     def exa_connect(self):
-        """Establish a connection to the Exa service (placeholder)."""
+        """Establish a connection to the Exa service (placeholder).
+        https://dashboard.exa.ai/playground/get-contents?filters=%7B%22ids%22%3A%5B%22tesla.com%22%5D%2C%22text%22%3A%22true%22%7D
+        """
         exa = Exa(api_key = "ea1a10d3-ad06-4ed1-a2bb-1532fd6507b3")
         return exa
 
@@ -187,8 +188,7 @@ class LinkedInConnector:
 
 
 # Example usage (uncomment and set your API key to use):
-api_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM1NzIwNWE5LWViZTItNDM1OC04ODUyLTdmZjNmYzg0ZWMzZSIsInR5cGUiOiJpZV9tb2RlbCJ9.7l-bOTyW6kcD6mmj4zcdbtW-DBpH00BPcP3gZui4umI"
-linkedin_connector = LinkedInConnector(gmi_api_key=api_key)
+linkedin_connector = LinkedInConnector()
 extracted_user_profile_json = linkedin_connector.scrape_profile("https://www.linkedin.com/in/agrawalrinkal/")
 # linkedin_connector.pretty_print_request_response(extracted_user_profile_json)
 print("extracted_user_profile_json: ", extracted_user_profile_json)

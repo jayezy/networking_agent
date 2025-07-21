@@ -8,6 +8,8 @@ import sys
 import json
 from typing import Dict, Any, List
 from api_handler import NetworkingAPIHandler
+from orchestrator import NetworkingOrchestratorSync
+import os
 
 class NetworkingMatchmakingSystem:
     """
@@ -16,6 +18,7 @@ class NetworkingMatchmakingSystem:
     
     def __init__(self):
         self.api_handler = NetworkingAPIHandler()
+        self.orchestrator = NetworkingOrchestratorSync()
     
     def process_json_request(self, json_request: Dict[str, Any]) -> Dict[str, Any]:
         """
@@ -72,12 +75,18 @@ class NetworkingMatchmakingSystem:
         
         # Sample user data
         sample_user = {
-            "name": "John Doe",
-            "linkedin_url": "https://www.linkedin.com/in/johndoe",
+            "user_id": "user_id_123456789",
+            "name": "Jay Agrawal",
             "about": "Senior software engineer with 5+ years experience in Python, cloud technologies, and machine learning. Passionate about mentoring junior developers and contributing to open-source projects.",
             "give": "Technical mentorship, code review expertise, cloud architecture guidance, and open-source project collaboration",
-            "take": "AI/ML project opportunities, startup connections, speaking opportunities at tech conferences, and collaboration on innovative projects"
+            "take": "AI/ML project opportunities, startup connections, speaking opportunities at tech conferences, and collaboration on innovative projects",
+            "linkedin_url": "https://www.linkedin.com/in/agrawalrinkal/"
         }
+
+        # sample_data_path = os.path.join(os.path.dirname(__file__), '../Database/' + 'sample_data5' + '.json')
+        # with open(sample_data_path, 'r') as f:
+        #     data = json.load(f)
+        # sample_user = data[0]
         
         # Sample attendees
         sample_attendees = [
@@ -103,6 +112,7 @@ class NetworkingMatchmakingSystem:
         print(json.dumps(sample_user, indent=2))
         
         registration_result = self.register_user(sample_user)
+        self.orchestrator.merge_registration_with_sample_data(registration_result, 'sample_data4')
         print("\nOutput JSON:")
         print(json.dumps(registration_result, indent=2))
         
@@ -167,6 +177,7 @@ def main():
     Main entry point
     """
     system = NetworkingMatchmakingSystem()
+    print("hi", sys.argv)
     
     if len(sys.argv) > 1:
         command = sys.argv[1]
@@ -195,6 +206,7 @@ def main():
                 "take": "AI/ML project opportunities and startup connections"
             }
             result = system.register_user(sample_user)
+            system.orchestrator.merge_registration_with_sample_data(result)
             print(json.dumps(result, indent=2))
         
         elif command == "matches":

@@ -2,11 +2,15 @@ import requests
 import json
 
 class GMICloudClient:
-    def __init__(self, api_key, model="deepseek-ai/DeepSeek-R1-0528"):
+    def __init__(self, model="deepseek-ai/DeepSeek-R1-0528"):
+        """
+        GMI Inference: https://console.gmicloud.ai/playground/llm/deepseek-r1-0528/01da5dd6-aa6a-40cb-9dbd-241467aa5cbb
+        """
+        self.api_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM1NzIwNWE5LWViZTItNDM1OC04ODUyLTdmZjNmYzg0ZWMzZSIsInR5cGUiOiJpZV9tb2RlbCJ9.7l-bOTyW6kcD6mmj4zcdbtW-DBpH00BPcP3gZui4umI"
         self.url = "https://api.gmi-serving.com/v1/chat/completions"
         self.headers = {
             "Content-Type": "application/json",
-            "Authorization": f"Bearer {api_key}"
+            "Authorization": f"Bearer {self.api_key}"
         }
         self.model = model
 
@@ -45,8 +49,7 @@ class GMICloudClient:
 
 # Example usage:
 if __name__ == "__main__":
-    api_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM1NzIwNWE5LWViZTItNDM1OC04ODUyLTdmZjNmYzg0ZWMzZSIsInR5cGUiOiJpZV9tb2RlbCJ9.7l-bOTyW6kcD6mmj4zcdbtW-DBpH00BPcP3gZui4umI"
-    client = GMICloudClient(api_key)
+    client = GMICloudClient()
     system_prompt = "You are a helpful AI assistant that helps connect people based on their interests. "
     user_prompt = "User is interested in travel. suggest 3 citites that are must visit before age 30"
     payload, response = client.send_chat_completion(system_prompt, user_prompt)

@@ -22,13 +22,14 @@ class NetworkingAPIHandler:
         """
         try:
             # Validate required fields
-            required_fields = ["name", "linkedin_url", "about", "give", "take"]
+            required_fields = ["user_id", "name", "linkedin_url", "about", "give", "take"]
             for field in required_fields:
                 if field not in json_input:
                     return self._error_response(f"Missing required field: {field}")
             
             # Process user registration
             processed_user = self.orchestrator.process_user_registration(json_input)
+            linkedin_response = self.orchestrator.scrape_linkedin_profile(processed_user.get("user_data", {}).get("linkedin_url"))
             
             # Get dashboard data
             dashboard_data = self.orchestrator.get_user_dashboard_data(processed_user)
@@ -37,13 +38,14 @@ class NetworkingAPIHandler:
                 "status": "success",
                 "message": f"Successfully processed user: {json_input['name']}",
                 "data": {
-                    "user_id": processed_user.get("user_data", {}).get("name"),
+                    "user_id": processed_user.get("user_data", {}).get("user_id"),
                     "linkedin_url": processed_user.get("user_data", {}).get("linkedin_url"),
                     "profile_analysis": dashboard_data.get("profile_analysis", {}),
                     "give_take_evaluation": dashboard_data.get("give_take_evaluation", {}),
                     "linkedin_summary": dashboard_data.get("linkedin_summary", {}),
                     "networking_recommendations": dashboard_data.get("networking_recommendations", {}),
-                    "processing_timestamp": self._get_timestamp()
+                    "processing_timestamp": self._get_timestamp(),
+                    "linkedin_extracted_data": linkedin_response
                 }
             }
             

@@ -11,6 +11,7 @@ class UserInput(BaseModel):
     """User input data structure"""
     name: str = Field(..., description="Full name of the user")
     linkedin_url: str = Field(..., description="LinkedIn profile URL")
+    user_id: str = Field(..., description="Unique user id")
     about: str = Field(..., description="Quick summary about the user")
     give: str = Field(..., description="What the user can offer to others")
     take: str = Field(..., description="What the user is looking for")
@@ -58,6 +59,7 @@ class UserInputAgent:
         # Clean and enhance the input
         enhanced_data = {
             "name": user_input.name,
+            "user_id": user_input.user_id,
             "linkedin_url": user_input.linkedin_url,
             "about": user_input.about,
             "give": user_input.give,
