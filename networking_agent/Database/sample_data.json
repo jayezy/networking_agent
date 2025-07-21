@@ -1,7 +1,9 @@
 [{
     "user_id": "jay",
-    "email": "jayezy7@gmail.com",
+    "first_name": "jay",
+    "last_name": "agrawal",
     "value_in": "expereinced in product leadership, good at 0-1 projects",
     "value_out": "mentorship",
+    "ice_break": "running",
     "linkedin_url": "https://www.linkedin.com/in/agrawalrinkal/"
 }]
