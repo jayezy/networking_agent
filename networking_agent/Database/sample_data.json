@@ -4,4 +4,121 @@
     "give": "expereinced in product leadership, good at 0-1 projects",
     "take": "mentorship",
     "linkedin_url": "https://www.linkedin.com/in/agrawalrinkal/"
-}]
+},
+{
+    "user_id": "jay2",
+    "email": "jayezy7@gmail.com",
+    "give": "expereinced in product leadership, good at 0-1 projects",
+    "take": "mentorship",
+    "linkedin_url": "https://www.linkedin.com/in/agrawalrinkal/",
+    "linkedin_extracted_data": {
+        "name": "Rinkal Agrawal",
+        "summary": "Rinkal Agrawal is a Tech Lead at Google specializing in building products and enhancing user experiences. Previously, he served as a Software Engineer at Instagram and Robinhood, where he led significant projects including real-time data pipelines, market infrastructure, and media recommendation systems. With achievements such as improving crypto execution quality by 3% at Robinhood and increasing Instagram media views by 9%, he combines technical expertise in distributed systems with a passion for product innovation. He holds a Bachelor's in Computer Science.",
+        "interests": [
+        {
+            "skill": "Product Development",
+            "proficiency_score": 0.9
+        },
+        {
+            "skill": "Real-time Data Processing",
+            "proficiency_score": 0.9
+        },
+        {
+            "skill": "Distributed Systems",
+            "proficiency_score": 0.85
+        },
+        {
+            "skill": "User Experience",
+            "proficiency_score": 0.85
+        },
+        {
+            "skill": "Machine Learning Integration",
+            "proficiency_score": 0.7
+        }
+        ],
+        "experience": [
+        {
+            "company": "Google",
+            "position": "Tech Lead",
+            "start_date": "Jan 2024",
+            "end_date": "Present",
+            "description": "Leads the Search Home Team, overseeing technical strategy and development initiatives."
+        },
+        {
+            "company": "Google",
+            "position": "Software Engineer",
+            "start_date": "Jun 2022",
+            "end_date": "Jan 2024",
+            "description": "Worked on the Google Search Home Team contributing to core search functionalities."
+        },
+        {
+            "company": "Robinhood",
+            "position": "Software Engineer",
+            "start_date": "Apr 2021",
+            "end_date": "Jun 2022",
+            "description": "Led real-time market data support to launch crypto coins including Shiba Inu. Designed a 24/7 crypto data pipeline improving execution quality by 3%, built standalone infrastructure using Kafka, Redis, and Postgres, and supported IPO Access features with custom cron jobs for stock data."
+        },
+        {
+            "company": "Instagram",
+            "position": "Software Engineer",
+            "start_date": "Jul 2019",
+            "end_date": "Feb 2021",
+            "description": "Launched media recommendations on Instagram feed increasing views by 9%. Led political content filtering for US elections reducing recommendations by 97%, built user sentiment surveys, owned feed integrity, and revamped on-call alerting saving 5 hours/week."
+        },
+        {
+            "company": "CenturyLink",
+            "position": "Software Engineer II",
+            "start_date": "Nov 2018",
+            "end_date": "Jul 2019",
+            "description": "Enhanced legacy applications via SNMP batching (4x efficiency gains) and automated device activation cutting time from 30 to 10 minutes."
+        },
+        {
+            "company": "CenturyLink",
+            "position": "Software Engineer",
+            "start_date": "Jun 2017",
+            "end_date": "Nov 2018",
+            "description": ""
+        }
+        ],
+        "education": [
+        {
+            "school": "University of Minnesota",
+            "degree": "Bachelor's degree, Computer Science",
+            "start_date": "",
+            "end_date": "",
+            "description": ""
+        },
+        {
+            "school": "Manipal Institute of Technology",
+            "degree": "Bachelor of Technology (BTech), Computer Science",
+            "start_date": "",
+            "end_date": "",
+            "description": ""
+        }
+        ],
+        "projects": [
+        {
+            "name": "Autonomous Quadcopter Drone",
+            "position": "Head Undergraduate Researcher",
+            "start_date": "Aug 2016",
+            "end_date": "Jan 2017",
+            "description": "Collaborated with Professor Sanjai Rayadurgam to replace hardware/software systems, installing pixhawk hardware with NASA software to achieve drone autonomy."
+        },
+        {
+            "name": "VideoAnt Website Redesign",
+            "position": "Student Web Application Development Intern",
+            "start_date": "May 2016",
+            "end_date": "Aug 2016",
+            "description": "Redesigned the VideoAnt platform to enable users to add subtitles to online videos via URL integrations."
+        },
+        {
+            "name": "Android Sensor Visualization App",
+            "position": "Software Development Intern",
+            "start_date": "Jun 2016",
+            "end_date": "Jun 2017",
+            "description": "Designed and implemented UI components for an Android app that visualized real-time field sensor data using AWS infrastructure."
+        }
+        ]
+    }
+    }
+]
