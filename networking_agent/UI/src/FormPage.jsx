@@ -44,6 +44,24 @@ const INTERESTS_EXAMPLES = [
   "basketball, astronomy, pottery"
 ];
 
+const WHAT_YOU_BRING_EXAMPLES = [
+  "10 years experience working with AI/ML",
+  "5 years building scalable web applications",
+  "Expertise in product management and go-to-market strategy",
+  "Deep knowledge of cloud infrastructure and DevOps",
+  "Experience leading engineering teams of 20+ people",
+  "Background in data science and analytics",
+  "Skills in UI/UX design and user research",
+  "Network of 500+ industry professionals",
+  "Experience raising $2M+ in venture capital",
+  "Expertise in blockchain and DeFi protocols",
+  "Background in marketing and growth hacking",
+  "Experience scaling startups from 0 to 1000+ users",
+  "Skills in mobile app development (iOS/Android)",
+  "Knowledge of cybersecurity and compliance",
+  "Experience in sales and business development"
+];
+
 function getRandomWelcome() {
   const idx = Math.floor(Math.random() * WELCOME_STATEMENTS.length);
   return WELCOME_STATEMENTS[idx] + ' 🤝🔗';
@@ -56,16 +74,9 @@ function getRandomExample(examples) {
 
 const Confetti = () => (
   <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', pointerEvents: 'none', zIndex: 1000 }}>
-    <div style={{ fontSize: 48, textAlign: 'center', marginTop: '20vh', animation: 'confetti-fall 2s linear' }}>
+    <div style={{ fontSize: 48, textAlign: 'center', marginTop: '20vh' }}>
       🎉🎊✨🎉🎊✨
     </div>
-    <style>{`
-      @keyframes confetti-fall {
-        0% { opacity: 0; transform: translateY(-100px); }
-        20% { opacity: 1; }
-        100% { opacity: 0; transform: translateY(200px); }
-      }
-    `}</style>
   </div>
 );
 
@@ -77,10 +88,12 @@ const FormPage = () => {
     linkedin: '',
     lookingFor: '',
     interests: '',
+    whatYouBring: '',
   });
   const [welcome] = useState(getRandomWelcome());
   const [lookingForExample] = useState(getRandomExample(LOOKING_FOR_EXAMPLES));
   const [interestsExample] = useState(getRandomExample(INTERESTS_EXAMPLES));
+  const [whatYouBringExample] = useState(getRandomExample(WHAT_YOU_BRING_EXAMPLES));
   const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e) => {
@@ -127,6 +140,10 @@ const FormPage = () => {
         {
           question: "Help break the ice! What kind of stuff is your spice?",
           answer: form.interests
+        },
+        {
+          question: "What do you bring?",
+          answer: form.whatYouBring
         }
       ]
     };
@@ -297,6 +314,31 @@ const FormPage = () => {
                 onChange={handleChange}
                 required
                 placeholder={`e.g. ${lookingForExample}`}
+                style={{
+                  width: '100%',
+                  padding: '12px 14px',
+                  border: '1.5px solid #c7d2fe',
+                  borderRadius: 8,
+                  fontSize: 16,
+                  outline: 'none',
+                  fontFamily: 'Inter, sans-serif',
+                  transition: 'border 0.2s',
+                  boxSizing: 'border-box',
+                  background: '#f1f5f9',
+                }}
+                onFocus={e => e.target.style.border = '1.5px solid #6366f1'}
+                onBlur={e => e.target.style.border = '1.5px solid #c7d2fe'}
+              />
+            </div>
+            <div style={{ marginBottom: 20 }}>
+              <label style={{ display: 'block', marginBottom: 6, color: '#374151', fontWeight: 500 }}>What do you bring?</label>
+              <input
+                type="text"
+                name="whatYouBring"
+                value={form.whatYouBring}
+                onChange={handleChange}
+                required
+                placeholder={`e.g. ${whatYouBringExample}`}
                 style={{
                   width: '100%',
                   padding: '12px 14px',
