@@ -28,7 +28,7 @@ class NetworkingMatchmakingSystem:
         Register a new user
         """
         request = {
-            "action": "register_user",
+            "action": "register_user", 
             **user_data
         }
         return self.process_json_request(request)
